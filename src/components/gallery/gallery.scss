@@ -1,0 +1,16 @@
+$gutter: 10px;
+
+.gallery {
+	display: flex;
+	width: 1200px;
+	margin: 0 auto;
+  justify-content: space-between;
+	flex-wrap: wrap;
+
+	&__item {
+		margin: $gutter;
+		display: flex;
+  	flex-wrap: wrap;
+		flex-basis: calc(50% - $gutter*2);
+	}
+}

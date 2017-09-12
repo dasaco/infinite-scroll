@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import './frontpage.scss';
 
+import Gallery from '../../components/gallery/gallery';
+
 class Frontpage extends Component {
 
 	constructor(props) {
@@ -10,7 +12,7 @@ class Frontpage extends Component {
 
 	render() {
 	  return (
-			<div>Frontpage</div>
+			<Gallery />
 	  );
 	}
 }
