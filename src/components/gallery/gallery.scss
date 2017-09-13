@@ -1,6 +1,6 @@
 @import '~styles/main';
 
-$gutter: 13px;
+$gutter: 11px;
 
 .gallery {
 	display: flex;
@@ -28,6 +28,7 @@ $gutter: 13px;
 		-webkit-box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.56);
 		-moz-box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.56);
 		box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.56);
+		background-color: #e4e1e1;
 
 		&-like {
 			position: absolute;

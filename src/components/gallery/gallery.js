@@ -15,7 +15,11 @@ class Gallery extends Component {
 			windowHeight: '0',
 			isLoading: false,
 			itemsToLoad: 9,
-			page: 1
+			page: 1,
+			viewport: {
+				windowTop: 0,
+				windowHeight: 0
+			}
 		};
 
 		this.handleScroll = this.handleScroll.bind(this);
@@ -40,11 +44,17 @@ class Gallery extends Component {
 	}
 
 	handleScroll = (element) => {
+		this.setState({
+      viewport: {
+        windowTop: window.pageYOffset,
+        windowHeight: window.innerHeight
+      }
+    });
 		const { isLoading, itemsToLoad } = this.state;
+		const { windowTop, windowHeight } = this.state.viewport;
 		if(!isLoading) {
-			let { windowHeight } = this.state;
-			windowHeight += element.target.scrollingElement.scrollTop;
-			if(windowHeight >= element.target.scrollingElement.scrollHeight - 300) {
+			let windowBottom = windowTop + windowHeight;
+			if(windowBottom >= element.target.scrollingElement.scrollHeight) {
 				this.loadMoreItems(itemsToLoad);
 			}
 		}
@@ -69,6 +79,8 @@ class Gallery extends Component {
 						image: item.images.normal
 					});
 				});
+
+				console.log(data);
 
 				page = page + 1;
 
