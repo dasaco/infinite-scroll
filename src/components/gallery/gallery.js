@@ -51,7 +51,7 @@ class Gallery extends Component {
 		const { windowTop, windowHeight } = this.state.viewport;
 		if(!isLoading) {
 			let windowBottom = windowTop + windowHeight;
-			if(windowBottom >= element.target.scrollingElement.scrollHeight) {
+			if(windowBottom >= element.target.scrollingElement.scrollHeight - 300) {
 				this.loadMoreItems(itemsToLoad);
 			}
 		}
