@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 import './frontpage.scss';
 
-import Gallery from '../../components/gallery/gallery';
+import GalleryContainer from '../../components/gallery/galleryContainer';
 
 class Frontpage extends Component {
 
@@ -12,7 +13,9 @@ class Frontpage extends Component {
 
 	render() {
 	  return (
-			<Gallery />
+			<div className="container">
+				<GalleryContainer />
+			</div>
 	  );
 	}
 }

@@ -10,6 +10,8 @@ module.exports = {
 
 	entry: ['./index.js'],
 
+	devtool: '#eval-source-map',
+
 	output: {
 		path: path.join(__dirname, '/dist'),
 		filename: 'bundle.js'
@@ -28,6 +30,10 @@ module.exports = {
 
 	module: {
 		rules: [
+			{
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
