@@ -1,17 +1,17 @@
 import {
-	createStore,
-	combineReducers
+  createStore,
+  combineReducers,
 } from 'redux';
 
 import galleryReducer from 'services/gallery/galleryReducer';
 
 const rootReducer = combineReducers({
-	galleryReducer
+  galleryReducer,
 });
 
 const store = createStore(
-	rootReducer,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 export default store;

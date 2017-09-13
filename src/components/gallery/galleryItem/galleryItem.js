@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { HeartOutline, Heart } from 'misc/icons';
-import './galleryItem.scss';
 
 class GalleryItem extends Component {
   constructor(props) {
@@ -33,11 +32,16 @@ class GalleryItem extends Component {
           <h2 className="gallery__item-title">{title}</h2>
           <div className="gallery__item-separator" />
           <p className="gallery__item-author">{author}</p>
-          <a className="gallery__item-link" onClick={this.onLikeClicked}>
+          <a
+            className="gallery__item-link"
+            role="button"
+            tabIndex={0}
+            onClick={this.onLikeClicked}
+          >
             { isLiked ? 'Unfavourite' : 'Favourite' }
           </a>
         </div>
-        <div className="gallery__item-like">
+        <div className={`gallery__item-like ${(isLiked && 'gallery__item-like--liked')}`}>
           {isLiked && <Heart size="15" color="rgba(234, 67, 67, 1)" />}
         </div>
       </div>

@@ -14,7 +14,8 @@ class Gallery extends Component {
 		this.state = {
 			windowHeight: '0',
 			isLoading: false,
-			itemsToLoad: 9
+			itemsToLoad: 9,
+			page: 1
 		};
 
 		this.handleScroll = this.handleScroll.bind(this);
@@ -26,8 +27,7 @@ class Gallery extends Component {
 	  this.updateWindowDimensions();
 	  window.addEventListener('resize', this.updateWindowDimensions);
     window.addEventListener('scroll', this.handleScroll);
-		this.loadMoreItems();
-		this.loadMoreItems();
+		this.loadMoreItems(30);
 	}
 
 	componentWillUnmount() {
@@ -40,41 +40,46 @@ class Gallery extends Component {
 	}
 
 	handleScroll = (element) => {
-		const { isLoading } = this.state;
+		const { isLoading, itemsToLoad } = this.state;
 		if(!isLoading) {
 			let { windowHeight } = this.state;
 			windowHeight += element.target.scrollingElement.scrollTop;
 			if(windowHeight >= element.target.scrollingElement.scrollHeight - 300) {
-				this.setState({isLoading: true});
-				this.loadMoreItems();
+				this.loadMoreItems(itemsToLoad);
 			}
 		}
 	}
 
-	loadMoreItems() {
-		const { itemsToLoad } = this.state;
-		axios.get('https://api.dribbble.com/v1/shots?per_page=' + itemsToLoad + '&access_token=1102173841c2fd99e249b7e250683e41df0db65672bdeb3594bef0e7e2c13306')
-		.then(res => {
-			let data = res.data;
-			let newItems = [];
+	loadMoreItems(amount) {
 
-			data.map((item, i) => {
-				newItems.push({
-					title: item.title,
-					author: item.user.name,
-					image: item.images.normal
+		let { isLoading } = this.state;
+
+		if(!isLoading) {
+			this.setState({isLoading: true});
+			let { page } = this.state;
+			axios.get('https://api.dribbble.com/v1/shots?page=' + page + '&per_page=' + amount + '&access_token=1102173841c2fd99e249b7e250683e41df0db65672bdeb3594bef0e7e2c13306')
+			.then(res => {
+				let data = res.data;
+				let newItems = [];
+
+				data.map((item, i) => {
+					newItems.push({
+						title: item.title,
+						author: item.user.name,
+						image: item.images.normal
+					});
 				});
+
+				page = page + 1;
+
+				this.props.addItems(newItems);
+
+				this.setState({isLoading: false, page});
+			})
+			.catch(error => {
+				console.log(error);
 			});
-
-			console.log(data);
-
-			this.props.addItems(newItems);
-
-			this.setState({isLoading: false});
-		})
-		.catch(error => {
-			console.log(error);
-		});
+		}
 	}
 
 	renderGalleryItems() {
@@ -93,9 +98,11 @@ class Gallery extends Component {
 	}
 
   render() {
+		const { isLoading } = this.state;
     return (
       <div className="gallery">
 				{this.renderGalleryItems()}
+				{isLoading && (<img className="gallery__loader rotating" src="/img/sand-clock.svg" />)}
 			</div>
     );
   }

@@ -11,9 +11,9 @@ import store from './store';
 
 ReactDOM.render(
 
-	<Provider store={store}>
-		{Router}
-	</Provider>,
+  <Provider store={store}>
+    {Router}
+  </Provider>,
 
-	document.getElementById('app-mount-point')
+  document.getElementById('app-mount-point'),
 );

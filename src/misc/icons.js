@@ -10,7 +10,7 @@ function extractIconConfig(props) {
   };
 }
 
-export const Heart = (props) => {
+const Heart = (props) => {
   const { size, color } = extractIconConfig(props);
 
   return (
@@ -19,3 +19,5 @@ export const Heart = (props) => {
     </svg>
   );
 };
+
+export { Heart };

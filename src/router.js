@@ -6,13 +6,13 @@ import Frontpage from 'views/frontpage/frontpage';
 
 const ApplicationRouter = (
 
-	<Router history={browserHistory}>
-		<Route component={Shell}>
+  <Router history={browserHistory}>
+    <Route component={Shell}>
 
-			<Route path="/" component={Frontpage} />
+      <Route path="/" component={Frontpage} />
 
-		</Route>
-	</Router>
+    </Route>
+  </Router>
 
 );
 

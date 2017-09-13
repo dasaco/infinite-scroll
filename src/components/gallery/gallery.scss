@@ -8,6 +8,11 @@ $gutter: 13px;
   justify-content: space-between;
 	flex-wrap: wrap;
 
+	&__loader {
+		margin: 0 auto;
+    width: 30px;
+	}
+
 	&__item {
 		overflow: hidden;
 		position: relative;
@@ -20,16 +25,21 @@ $gutter: 13px;
     border-radius: 5px;
 		color: #fff;
 		text-align: center;
-		-webkit-box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.75);
-		-moz-box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.75);
-		box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.75);
+		-webkit-box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.56);
+		-moz-box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.56);
+		box-shadow: 3px 3px 7px -4px rgba(0,0,0,0.56);
 
 		&-like {
 			position: absolute;
 			left: 10px;
-			bottom: 9px;
+			bottom: -10px;
 			width: 10px;
 			height: 10px;
+			@include transition(all .1s ease-in-out);
+
+			&--liked {
+				bottom: 9px;
+			}
 		}
 
 		&-hover {
@@ -51,7 +61,6 @@ $gutter: 13px;
 		}
 
 		&-title {
-	    margin-top: 69px;
 			font-size: 17px;
 			font-weight: bold;
 			position: relative;
@@ -61,7 +70,7 @@ $gutter: 13px;
 				position: absolute;
 				display: inline-block;
 				height: 1.5em;
-				width: 49px;
+				width: 60px;
 				border-bottom: 2px solid;
 				right: 0;
 				left: 0;
@@ -71,9 +80,10 @@ $gutter: 13px;
 		}
 
 		&-author {
-			margin-top: 10px;
+			margin-top: -1px;
 	    font-style: italic;
 	    font-size: 15px;
+	    margin-bottom: 26px;
 		}
 
 		&-link {
