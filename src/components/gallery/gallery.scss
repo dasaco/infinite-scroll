@@ -95,6 +95,7 @@ $gutter: 13px;
 	    margin: 0 auto;
 	    border-radius: 17px;
 	    font-size: 14px;
+			outline: none;
 			@include transition(background-color .2s ease-in-out);
 
 			&:hover {
