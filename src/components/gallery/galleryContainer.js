@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Gallery from './gallery';
 import { addItems } from 'services/gallery/galleryActions';
+
+import Gallery from './gallery';
 
 const mapStateToProps = (state) => {
   const { items } = state.galleryReducer;

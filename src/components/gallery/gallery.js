@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
-import './gallery.scss';
-
 import axios from 'axios';
-
 import GalleryItem from './galleryItem/galleryItem';
+import './gallery.scss';
 
 class Gallery extends Component {
 
@@ -71,7 +68,6 @@ class Gallery extends Component {
 			.then(res => {
 				let data = res.data;
 				let newItems = [];
-
 				data.map((item, i) => {
 					newItems.push({
 						title: item.title,
@@ -79,13 +75,8 @@ class Gallery extends Component {
 						image: item.images.normal
 					});
 				});
-
-				console.log(data);
-
 				page = page + 1;
-
 				this.props.addItems(newItems);
-
 				this.setState({isLoading: false, page});
 			})
 			.catch(error => {
